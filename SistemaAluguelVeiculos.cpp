@@ -4,14 +4,6 @@
 
 int main(){
 
-
-
-
-
-
-
-
-
 char login[10], g1login[10];
 int senha, g1senha;
 int op1, op2;
