@@ -2,12 +2,27 @@
 #include<stdlib.h>
 #include<string.h>
 
-123
+struct regcadcarro{
+	char modelo[10][20],marca[10][20],nome[10][20];
+	int quant[10];
+	bool statusdisp[10];
+	
+};
+
+struct regcadcliente{
+	char nome[10][20];
+	int numcnh[10];
+	
+};
+
 int main(){
+	struct regcadcarro cadcar;
+	struct regcadcliente cadcli;
 
 char login[10], g1login[10];
 int senha, g1senha;
-int op1, op2;
+int op1, op2,op3;
+int ind;
 
 op1, op2=1;
 strcpy(g1login,"GERENTE");
@@ -36,41 +51,78 @@ g1senha=123;
 				system("cls");
 				switch (op2){
 					
-					case 0:		op2=0;
-								break;
-								
+					case 0:		
+						exit(0);
+						
+						break;								
 								
 					case 1:
-								printf("-CADASTRO DE CARROS-\n\n");
-								printf("\nVALOR: ");
-								
-								printf("\nQUANTIDADE: ");
-								
-								printf("\nMARCA: ");
-								fflush(stdin);
-								
-								printf("\nMODELO: ");
-								fflush(stdin);
-								
-								printf("\nANO: ");
-								fflush(stdin);
-								
-								printf("\nCHASSI: ");
-								fflush(stdin);
-								
-														
-								
-								
-								break;
-					
-					case 2:
-								printf("-CADASTRO DE CLIENTES-\n\n");
-								printf("\nNOME: ");
-								fflush(stdin);
-								
-								printf("\nMATRICULA: ");
+							do{
+									for(ind=0;ind<=9;ind++){								
+									system("cls");
+									printf("-CADASTRO DE CARROS-\n\n");
+									printf("\nNOME: ");
+									fflush(stdin);
+									gets(cadcar.nome[ind]);
+									printf("\nMARCA: ");
+									fflush(stdin);
+									gets(cadcar.marca[ind]);
+									printf("\nMODELO: ");
+									fflush(stdin);
+									gets(cadcar.modelo[ind]);
+									printf("\nQUANTIDADE: ");
+									scanf("%i",&cadcar.quant[ind]);
 									
+									if(cadcar.quant[ind]>0){
+										cadcar.statusdisp[ind]=true;
+																			
+									}else{
+										cadcar.statusdisp[ind]=false;
+									}
+									
+									do{
+										system("cls");
+										printf("\t-CADASTRO DE CARROS-\n");
+										printf("\nCADASTRO EFETIVADO COM SUCESSO\n");
+										printf("\nDESEJA CONTINUAR CADASTRANDO?");										
+										printf("\n1 - Continuar");
+										printf("\n0 - Sair\n");
+										scanf("%i",&op3);
+										if (op3==0){
+														ind=11;
+													}	
+										}while(op3!=0 && op3!=1);
+									}
 								
+								}while(ind<10);
+								break;
+								
+					case 2:
+							do{
+							
+								for(ind=0;ind<=9;ind++){
+										system("cls");
+										printf("-CADASTRO DE CLIENTES-\n\n");
+										printf("\nNOME: ");
+										fflush(stdin);
+										gets(cadcli.nome[ind]);
+										printf("\nCNH: ");
+										scanf("%i",&cadcli.numcnh[ind]);
+										do{
+												system("cls");
+												printf("\t-CADASTRO DE CLIENTE-\n");
+												printf("\nCADASTRO EFETIVADO COM SUCESSO\n");
+												printf("\nDESEJA CONTINUAR CADASTRANDO?");										
+												printf("\n1 - Continuar");
+												printf("\n0 - Sair\n");
+												scanf("%i",&op3);
+												if (op3==0){
+															ind=11;
+														}	
+											}while(op3!=0 && op3!=1);
+										
+									}
+								}while(ind<10);
 								
 								break;			
 					
@@ -83,11 +135,10 @@ g1senha=123;
 								break;
 								
 					case 4:
+							
 								printf("-CADASTRO TABELA PRECO-\n\n");
 								
 								
-								
-								system("pause");
 								break;					
 											
 					
