@@ -3,7 +3,7 @@
 #include<string.h>
 
 struct regcadcarro{
-	char modelo[10],marca[10],nome[10];
+	char modelo[10],marca[10];
 	int quant;
 	
 };
@@ -28,11 +28,11 @@ struct regtabelapreco tabpreco[10];
 char login[10], g1login[10], pesqmodelo[10], pesqmarca[10];
 int senha, g1senha, pesqnumcnh, horasalugadas;
 int ind;
-int op1, op2, op3, indextabpreco, indexaux, indexauxcli, indexauxmodelo, indexauxmarca, indexauxmarcatabpreco, i, flag1;
+int op1, op2, op3, op4, indextabpreco, indexaux, indexauxcli, indexauxmodelo, indexauxmarca, indexauxmarcatabpreco, i, flag1;
 float valortotal, valorpago, valortroco;
 
 
-op1, op2, op3;
+op1,op2, op4=1;
 flag1, indextabpreco=0;
 strcpy(g1login,"GERENTE");
 g1senha=123;
@@ -67,35 +67,33 @@ g1senha=123;
 								
 					case 1:
 							do{
-									for(ind=0;ind<=9;ind++){								
-									system("cls");
-									printf("-CADASTRO DE CARROS-\n\n");
-									printf("\nNOME: ");
-									fflush(stdin);
-									gets(cadcar[ind].nome);
-									printf("\nMARCA: ");
-									fflush(stdin);
-									gets(cadcar[ind].marca);
-									strupr(cadcar[ind].marca);
-									printf("\nMODELO: ");
-									fflush(stdin);
-									gets(cadcar[ind].modelo);
-									strupr(cadcar[ind].modelo);									
-									printf("\nQUANTIDADE: ");
-									scanf("%i",&cadcar[ind].quant);
-									
-									
-									do{
+									for(ind=0;ind<=9;ind++)
+									{
 										system("cls");
-										printf("\t-CADASTRO DE CARROS-\n");
-										printf("\nCADASTRO EFETIVADO COM SUCESSO\n");
-										printf("\nDESEJA CONTINUAR CADASTRANDO?");										
-										printf("\n1 - Continuar");
-										printf("\n0 - Sair\n");
-										scanf("%i",&op3);
-										if (op3==0){
+										printf("-CADASTRO DE CARROS-\n\n");
+										printf("\nMODELO: ");
+										fflush(stdin);
+										gets(cadcar[ind].modelo);
+										strupr(cadcar[ind].modelo);
+										printf("\nMARCA: ");
+										fflush(stdin);
+										gets(cadcar[ind].marca);
+										strupr(cadcar[ind].marca);																		
+										printf("\nQUANTIDADE: ");
+										scanf("%i",&cadcar[ind].quant);
+										
+										
+										do{
+												system("cls");
+												printf("\t-CADASTRO DE CARROS-\n");
+												printf("\nCADASTRO EFETIVADO COM SUCESSO\n");
+												printf("\nDESEJA CONTINUAR CADASTRANDO?");										
+												printf("\n1 - Continuar");
+												printf("\n0 - Sair\n");
+												scanf("%i",&op3);
+												if (op3==0){
 														ind=11;
-													}	
+												}	
 										}while(op3!=0 && op3!=1);
 									}
 								
@@ -148,7 +146,7 @@ g1senha=123;
 									}
 									
 									if (flag1 == 0){										
-										printf("\nMARCA DE VEICULO NAO CADASTRADO, CADASTRAR VEICULO!");
+										printf("\nMARCA DE VEICULO NAO CADASTRADO, CADASTRAR VEICULO!\n");
 										system("pause");
 									}
 									else
@@ -176,11 +174,11 @@ g1senha=123;
 									
 									printf("\n\nCONTINUAR CADASTRO? (1)-SIM  (2)-NAO\n");
 									printf("Op: ");
-									scanf("%i",&op3);
+									scanf("%i",&op4);
 									
 									indextabpreco ++;
 									
-								}while (op3 != 2);								
+								}while (op4 != 2);								
 								
 								break;
 								
@@ -206,6 +204,7 @@ g1senha=123;
 									}
 									else
 									{
+										
 										printf("\nINFORME MODELO: ");
 										fflush(stdin);
 										gets(pesqmodelo);
@@ -221,13 +220,13 @@ g1senha=123;
 										}
 										
 										if (flag1 == 0){										
-											printf("\nMODELO DE VEICULO NAO CADASTRADO, CADASTRAR VEICULO!");
+											printf("\nMODELO DE VEICULO NAO CADASTRADO, CADASTRAR VEICULO!\n");
 											system("pause");
 											
 										}
 										else
 										{
-											printf("\nINFORME MARCA: ");
+											printf("\n\nINFORME MARCA: ");
 											fflush(stdin);
 											gets(pesqmarca);
 											
@@ -243,7 +242,7 @@ g1senha=123;
 											}
 											
 											if (flag1 == 0){										
-												printf("\nMARCA DE VEICULO NAO CADASTRADO!");
+												printf("\nMARCA DE VEICULO NAO CADASTRADO!\n");
 												system("pause");
 												
 											}
@@ -259,30 +258,30 @@ g1senha=123;
 												}
 												
 												if (flag1 == 0){										
-													printf("\nTABELA DE PRECO NAO CADASTRADO PARA O VEICULO!");	
+													printf("\nTABELA DE PRECO NAO CADASTRADO PARA O VEICULO!\n");	
 													system("pause");
 													
 												}
 												else
 												{
 													if (cadcar[indexauxmarca].quant < 1){														
-														printf("\n\nMARCA DE VEICULO INDISPONIVEL!");
+														printf("\n\nMARCA DE VEICULO INDISPONIVEL!\n");
 														system("pause");
 													}
 													else
 													{
 													
-														printf("\nVALOR ALUGUEL DO VEICULO: %2.f",tabpreco[indexauxmarca].preco);	
-														printf("\nMARCA: %s",tabpreco[indexauxmarca].marca);
+														printf("\nVALOR ALUGUEL DO VEICULO: %2.f",tabpreco[indexauxmarcatabpreco].preco);	
+														printf("\nMARCA: %s",tabpreco[indexauxmarcatabpreco].marca);
 														printf("\n\nHORAS ALUGADAS: ");
 														scanf("%i",&horasalugadas);
-														valortotal=horasalugadas*tabpreco[indexauxmarca].preco;
+														valortotal=horasalugadas*tabpreco[indexauxmarcatabpreco].preco;
 														printf("\n\nVALOR TOTAL: %.2f",valortotal);
 														printf("\nVALOR PAGO: ");
 														scanf("%f",&valorpago);
 														
 														if (valorpago<valortotal){
-															printf("\nVALOR PAGO INFERIOR AO TOTAL!");
+															printf("\nVALOR PAGO INFERIOR AO TOTAL!\n");
 															system("pause");
 														}
 														else
@@ -292,6 +291,7 @@ g1senha=123;
 															valortroco = valorpago-valortotal;
 															
 															printf("\nTROCO: %.2f",valortroco);	
+															system("pause");															
 														}
 													}
 													
@@ -300,7 +300,10 @@ g1senha=123;
 										}
 									}
 								
-								}while (op3 != 2);
+									printf("\n\nDESEJA CONTINUAR O ALUGUEL? (1)-SIM (2)-NAO");
+									scanf("%i",&op4);
+									
+								}while (op4 != 2);
 								break;					
 											
 					
@@ -325,7 +328,7 @@ g1senha=123;
 		}
 		
 		
-	}while(op1=1);
+	}while(op1!=0);
 
 
 	system("pause");
