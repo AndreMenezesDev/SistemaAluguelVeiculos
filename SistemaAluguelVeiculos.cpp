@@ -2,14 +2,20 @@
 #include<stdlib.h>
 #include<string.h>
 
-123
+struct regtabelapreco{
+	char modelo[10];
+	float preco;
+};
+
 int main(){
 
-char login[10], g1login[10];
+char login[10], g1login[10], pesqmodelo[10];
 int senha, g1senha;
-int op1, op2;
+int op1, op2, op3, indextabpreco, indexatualizadotabpreco, i, flag1;
+struct regtabelapreco tabpreco[10];
 
-op1, op2=1;
+op1, op2, op3, aux1=1;
+flag1, indextabpreco=0;
 strcpy(g1login,"GERENTE");
 g1senha=123;
 	do 
@@ -75,11 +81,43 @@ g1senha=123;
 								break;			
 					
 					case 3:
-								printf("-CADASTRO TABELA PRECO-\n\n");
+								do{
 								
+									system("cls");
+									printf("-CADASTRO TABELA PRECO-\n\n");
+									printf("\nMODELO: ");
+									fflush(stdin);
+									gets(pesqmodelo);
+									
+									for (i=0; i< 10; i++){
+										strupr(pesqmodelo);
+										strupr(tabpreco[i].modelo);
+										if (strcmp(pesqmodelo,tabpreco[i].modelo) == 0){
+											flag1 = 1;
+											indexatualizadotabpreco = i;
+										}
+									}
+									
+									if (flag1 == 0){
+										strcpy(tabpreco[indextabpreco].modelo,pesqmodelo); 
+										printf("\nPRECO novo: ");										
+										scanf("%f",&tabpreco[indextabpreco].preco);
+										
+									}
+									else
+									{
+										printf("\nPRECO atualizado: ");
+										scanf("%f",&tabpreco[indexatualizadotabpreco].preco);
+									}
+									
+									printf("\n\nCONTINUAR CADASTRO? (1)-SIM  (2)-NAO\n");
+									printf("Op: ");
+									scanf("%i",&op3);
+									
+									indextabpreco ++;
+									
+								}while (op3 != 2);								
 								
-								
-								system("pause");
 								break;
 								
 					case 4:
