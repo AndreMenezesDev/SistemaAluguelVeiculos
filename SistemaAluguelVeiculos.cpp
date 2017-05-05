@@ -139,7 +139,7 @@ g1senha=123;
 					
 					case 3:
 								do{
-								
+									flag1=0;
 									system("cls");
 									printf("-CADASTRO TABELA PRECO-\n\n");
 									printf("\nMODELO: ");
