@@ -3,15 +3,15 @@
 #include<string.h>
 
 struct regcadcarro{
-	char modelo[10][20],marca[10][20],nome[10][20];
-	int quant[10];
-	bool statusdisp[10];
+	char modelo[10],marca[10],nome[10];
+	int quant;
+	bool statusdisp;
 	
 };
 
 struct regcadcliente{
-	char nome[10][20];
-	int numcnh[10];
+	char nome[10];
+	int numcnh;
 };
 	
 
@@ -20,15 +20,17 @@ struct regtabelapreco{
 	float preco;
 };
 
+
 int main(){
-	struct regcadcarro cadcar;
-	struct regcadcliente cadcli;
+struct regcadcarro cadcar[10];
+struct regcadcliente cadcli[10];
+struct regtabelapreco tabpreco[10];
 
 char login[10], g1login[10], pesqmodelo[10];
 int senha, g1senha;
 int ind;
 int op1, op2, op3, indextabpreco, indexatualizadotabpreco, i, flag1;
-struct regtabelapreco tabpreco[10];
+
 
 
 op1, op2, op3;
@@ -71,21 +73,22 @@ g1senha=123;
 									printf("-CADASTRO DE CARROS-\n\n");
 									printf("\nNOME: ");
 									fflush(stdin);
-									gets(cadcar.nome[ind]);
+									gets(cadcar[ind].nome);
 									printf("\nMARCA: ");
 									fflush(stdin);
-									gets(cadcar.marca[ind]);
+									gets(cadcar[ind].marca);
 									printf("\nMODELO: ");
 									fflush(stdin);
-									gets(cadcar.modelo[ind]);
+									gets(cadcar[ind].modelo);
+									strupr(cadcar[ind].modelo);
 									printf("\nQUANTIDADE: ");
-									scanf("%i",&cadcar.quant[ind]);
+									scanf("%i",&cadcar[ind].quant);
 									
-									if(cadcar.quant[ind]>0){
-										cadcar.statusdisp[ind]=true;
+									if(cadcar[ind].quant>0){
+										cadcar[ind].statusdisp=true;
 																			
 									}else{
-										cadcar.statusdisp[ind]=false;
+										cadcar[ind].statusdisp=false;
 									}
 									
 									do{
@@ -113,9 +116,9 @@ g1senha=123;
 										printf("-CADASTRO DE CLIENTES-\n\n");
 										printf("\nNOME: ");
 										fflush(stdin);
-										gets(cadcli.nome[ind]);
+										gets(cadcli[ind].nome);
 										printf("\nCNH: ");
-										scanf("%i",&cadcli.numcnh[ind]);
+										scanf("%i",&cadcli[ind].numcnh);
 										do{
 												system("cls");
 												printf("\t-CADASTRO DE CLIENTE-\n");
@@ -145,22 +148,21 @@ g1senha=123;
 									
 									for (i=0; i< 10; i++){
 										strupr(pesqmodelo);
-										strupr(tabpreco[i].modelo);
-										if (strcmp(pesqmodelo,tabpreco[i].modelo) == 0){
+																				
+										if (strcmp(pesqmodelo,cadcar[i].modelo) == 0){
 											flag1 = 1;
 											indexatualizadotabpreco = i;
 										}
 									}
 									
-									if (flag1 == 0){
-										strcpy(tabpreco[indextabpreco].modelo,pesqmodelo); 
-										printf("\nPRECO novo: ");										
-										scanf("%f",&tabpreco[indextabpreco].preco);
+									if (flag1 == 0){										
+										printf("\nMODELO DE VEICULO NAO CADASTRADO, CADASTRAR VEICULO!");										
+										
 										
 									}
 									else
 									{
-										printf("\nPRECO atualizado: ");
+										printf("\nPRECO: ");
 										scanf("%f",&tabpreco[indexatualizadotabpreco].preco);
 									}
 									
