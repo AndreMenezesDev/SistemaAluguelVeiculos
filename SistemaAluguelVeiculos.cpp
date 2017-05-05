@@ -2,9 +2,8 @@
 #include<stdlib.h>
 #include<string.h>
 
+123
 int main(){
-
-
 
 char login[10], g1login[10];
 int senha, g1senha;
