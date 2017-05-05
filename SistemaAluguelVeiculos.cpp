@@ -5,7 +5,6 @@
 struct regcadcarro{
 	char modelo[10],marca[10],nome[10];
 	int quant;
-	bool statusdisp;
 	
 };
 
@@ -16,7 +15,7 @@ struct regcadcliente{
 	
 
 struct regtabelapreco{
-	char modelo[10];
+	char marca[10];
 	float preco;
 };
 
@@ -26,11 +25,11 @@ struct regcadcarro cadcar[10];
 struct regcadcliente cadcli[10];
 struct regtabelapreco tabpreco[10];
 
-char login[10], g1login[10], pesqmodelo[10];
-int senha, g1senha;
+char login[10], g1login[10], pesqmodelo[10], pesqmarca[10];
+int senha, g1senha, pesqnumcnh, horasalugadas;
 int ind;
-int op1, op2, op3, indextabpreco, indexatualizadotabpreco, i, flag1;
-
+int op1, op2, op3, indextabpreco, indexaux, indexauxcli, indexauxmodelo, indexauxmarca, indexauxmarcatabpreco, i, flag1;
+float valortotal, valorpago, valortroco;
 
 
 op1, op2, op3;
@@ -77,19 +76,14 @@ g1senha=123;
 									printf("\nMARCA: ");
 									fflush(stdin);
 									gets(cadcar[ind].marca);
+									strupr(cadcar[ind].marca);
 									printf("\nMODELO: ");
 									fflush(stdin);
 									gets(cadcar[ind].modelo);
-									strupr(cadcar[ind].modelo);
+									strupr(cadcar[ind].modelo);									
 									printf("\nQUANTIDADE: ");
 									scanf("%i",&cadcar[ind].quant);
 									
-									if(cadcar[ind].quant>0){
-										cadcar[ind].statusdisp=true;
-																			
-									}else{
-										cadcar[ind].statusdisp=false;
-									}
 									
 									do{
 										system("cls");
@@ -142,28 +136,42 @@ g1senha=123;
 									flag1=0;
 									system("cls");
 									printf("-CADASTRO TABELA PRECO-\n\n");
-									printf("\nMODELO: ");
+									printf("\nMARCA: ");
 									fflush(stdin);
-									gets(pesqmodelo);
-									
+									gets(pesqmarca);
+									strupr(pesqmarca);
 									for (i=0; i< 10; i++){
-										strupr(pesqmodelo);
-																				
-										if (strcmp(pesqmodelo,cadcar[i].modelo) == 0){
-											flag1 = 1;
-											indexatualizadotabpreco = i;
+															
+										if (strcmp(pesqmarca,cadcar[i].marca) == 0){
+											flag1 = 1;											
 										}
 									}
 									
 									if (flag1 == 0){										
-										printf("\nMODELO DE VEICULO NAO CADASTRADO, CADASTRAR VEICULO!");										
-										
-										
+										printf("\nMARCA DE VEICULO NAO CADASTRADO, CADASTRAR VEICULO!");
+										system("pause");
 									}
 									else
 									{
-										printf("\nPRECO: ");
-										scanf("%f",&tabpreco[indexatualizadotabpreco].preco);
+										flag1=0;
+										for (i=0; i< 10; i++){
+																
+											if (strcmp(pesqmarca,tabpreco[i].marca) == 0){
+												flag1 = 1;
+												indexaux = i;
+											}
+										}
+										
+										if (flag1 == 0){										
+											strcpy(tabpreco[indextabpreco].marca,pesqmarca); 
+											printf("\nPRECO: ");										
+											scanf("%f",&tabpreco[indextabpreco].preco);
+										}
+										else
+										{
+											printf("\nPRECO ATUALIZADO: ");
+											scanf("%f",&tabpreco[indexaux].preco);
+										}
 									}
 									
 									printf("\n\nCONTINUAR CADASTRO? (1)-SIM  (2)-NAO\n");
@@ -177,10 +185,122 @@ g1senha=123;
 								break;
 								
 					case 4:
-							
-								printf("-CADASTRO TABELA PRECO-\n\n");
+								do{
+									flag1=0;
+									system("cls");
+									printf("-REALIZAR ALUGUEL VEICULO-\n\n");
+									printf("\nINFORME CNH CLIENTE: ");
+									scanf("%i",&pesqnumcnh);
+																	
+									for (i=0; i< 10; i++){
+																				
+										if (pesqnumcnh == cadcli[i].numcnh){
+											flag1 = 1;
+											indexauxcli = i;
+										}
+									}
+									
+									if (flag1 == 0){										
+										printf("\nCNH NAO CADASTRADA!");	
+										system("pause");
+									}
+									else
+									{
+										printf("\nINFORME MODELO: ");
+										fflush(stdin);
+										gets(pesqmodelo);
+										strupr(pesqmodelo);
+										flag1=0;				
+																
+										for (i=0; i< 10; i++){							
+											if (strcmp(pesqmodelo,cadcar[i].modelo) == 0){
+												flag1 = 1;
+												indexauxmodelo = i;
+												printf("\nMARCA: %s",cadcar[i].marca);
+											}
+										}
+										
+										if (flag1 == 0){										
+											printf("\nMODELO DE VEICULO NAO CADASTRADO, CADASTRAR VEICULO!");
+											system("pause");
+											
+										}
+										else
+										{
+											printf("\nINFORME MARCA: ");
+											fflush(stdin);
+											gets(pesqmarca);
+											
+											flag1=0;										
+											for (i=0; i< 10; i++){
+												strupr(pesqmarca);
+																						
+												if (strcmp(pesqmarca,cadcar[i].marca) == 0){
+													flag1 = 1;
+													indexauxmarca = i;
+													printf("\nMARCA: %s",cadcar[i].marca);
+												}
+											}
+											
+											if (flag1 == 0){										
+												printf("\nMARCA DE VEICULO NAO CADASTRADO!");
+												system("pause");
+												
+											}
+											else
+											{
+												flag1=0;
+												for (i=0; i< 10; i++){											
+																						
+													if (strcmp(pesqmarca,tabpreco[i].marca) == 0){
+														flag1 = 1;
+														indexauxmarcatabpreco = i;
+													}
+												}
+												
+												if (flag1 == 0){										
+													printf("\nTABELA DE PRECO NAO CADASTRADO PARA O VEICULO!");	
+													system("pause");
+													
+												}
+												else
+												{
+													if (cadcar[indexauxmarca].quant < 1){														
+														printf("\n\nMARCA DE VEICULO INDISPONIVEL!");
+														system("pause");
+													}
+													else
+													{
+													
+														printf("\nVALOR ALUGUEL DO VEICULO: %2.f",tabpreco[indexauxmarca].preco);	
+														printf("\nMARCA: %s",tabpreco[indexauxmarca].marca);
+														printf("\n\nHORAS ALUGADAS: ");
+														scanf("%i",&horasalugadas);
+														valortotal=horasalugadas*tabpreco[indexauxmarca].preco;
+														printf("\n\nVALOR TOTAL: %.2f",valortotal);
+														printf("\nVALOR PAGO: ");
+														scanf("%f",&valorpago);
+														
+														if (valorpago<valortotal){
+															printf("\nVALOR PAGO INFERIOR AO TOTAL!");
+															system("pause");
+														}
+														else
+														{
+															cadcar[indexauxmarca].quant --;
+															
+															valortroco = valorpago-valortotal;
+															
+															printf("\nTROCO: %.2f",valortroco);	
+														}
+													}
+													
+												}
+											}
+										}
+									}
 								
-								
+								}while (op3 != 2);
 								break;					
 											
 					
