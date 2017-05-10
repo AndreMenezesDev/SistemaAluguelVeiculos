@@ -39,11 +39,16 @@ g1senha=123;
 	do 
 	{
 		system("cls");
-		printf("Login: ");
+		printf("==============================================\n");
+      	printf("=             AJR ALUGUEL DE CARROS          \n");
+      	printf("=                                            \n");
+		printf("=                 Login: ");
 		fflush(stdin);
 		gets(login);
-		printf("Senha: ");
+		printf("=                 Senha: ");
 		scanf("%i",&senha);
+		printf("=                                            \n");
+		printf("==============================================\n");
 		
 		if (strcmp( strupr(login), g1login)==0 && (senha == g1senha))
 		{
