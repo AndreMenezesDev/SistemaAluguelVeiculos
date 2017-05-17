@@ -55,12 +55,18 @@ g1senha=123;
 			do
 			{
 				system("cls");
-				printf("1.Cadastrar Carro\n");
-				printf("2.Cadastrar Cliente\n");
-				printf("3.Cadastrar Tabela Preco\n");
-				printf("4.Realizar Aluguel\n");
-				printf("0-Sair\n");
+				printf("==============================================\n");
+		      	printf("=             AJR ALUGUEL DE CARROS          \n");
+		      	printf("=                                            \n");
+				printf("=             1.Cadastrar Carro\n");
+				printf("=             2.Cadastrar Cliente\n");
+				printf("=             3.Cadastrar Tabela Preco\n");
+				printf("=             4.Realizar Aluguel\n");
+				printf("=             0-Sair\n");
+				printf("=     --->    ");
 				scanf("%i",&op2);
+				printf("=                                            \n");
+				printf("==============================================\n");
 				
 				system("cls");
 				switch (op2){
@@ -74,28 +80,56 @@ g1senha=123;
 							do{
 									
 									system("cls");
-									printf("-CADASTRO DE CARROS-\n\n");
-									printf("\nMODELO: ");
+									printf("==============================================\n");
+							      	printf("=         AJR ALUGUEL DE CARROS          \n");
+							      	printf("=                                        \n");
+									printf("=         -CADASTRO DE CARROS-\n\n");
+									printf("=MODELO: ");
 									fflush(stdin);
 									gets(cadcar[ind].modelo);
 									strupr(cadcar[ind].modelo);
-									printf("\nMARCA: ");
+									printf("=MARCA: ");
 									fflush(stdin);
-									gets(cadcar[ind].marca);
-									strupr(cadcar[ind].marca);																		
-									printf("\nQUANTIDADE: ");
-									scanf("%i",&cadcar[ind].quant);
+									gets(pesqmarca);
+									strupr(pesqmarca);
 									
-									ind++;
+									for (i=0; i< ind; i++){
+															
+										if (strcmp(pesqmarca,cadcar[i].marca) == 0){
+											flag1 = 1;
+											indexaux = i;											
+										}
+									}
 									
-									system("cls");
-									printf("\t-CADASTRO DE CARROS-\n");
-									printf("\nCADASTRO EFETIVADO COM SUCESSO\n");
-									printf("\nDESEJA CONTINUAR CADASTRANDO?");										
-									printf("\n1 - Continuar");
-									printf("\n0 - Sair\n");
-									scanf("%i",&op3);
-									
+									if (flag1 == 0){
+										
+										strcpy(cadcar[ind].marca,pesqmarca);
+										strupr(cadcar[ind].marca);																		
+										printf("=QUANTIDADE: ");
+										scanf("%i",&cadcar[ind].quant);
+										ind++;
+									}
+									else
+									{									
+																												
+										printf("=QUANTIDADE: ");
+										scanf("%i",&cadcar[indexaux].quant);
+										printf("\n==============================================\n");									
+									}								
+																			
+										system("cls");
+										printf("==========================================\n");
+								      	printf("=\tAJR ALUGUEL DE CARROS          \n");
+										printf("\n=\t-CADASTRO DE CARROS-\n");
+										printf("\n=CADASTRO EFETIVADO COM SUCESSO\n");
+										printf("\n==========================================\n");
+										printf("\n=DESEJA CONTINUAR CADASTRANDO?");										
+										printf("\n=\t1 - Continuar");
+										printf("\n=\t0 - Sair\n");
+										printf("=\t--->");									
+										scanf("%i",&op3);
+										printf("\n==============================================\n");									
+										
 								}while(op3!=0);
 								break;
 								
@@ -103,20 +137,26 @@ g1senha=123;
 							do{							
 								
 								system("cls");
-								printf("-CADASTRO DE CLIENTES-\n\n");
-								printf("\nNOME: ");
+								printf("==========================================\n");
+								printf("=\tAJR ALUGUEL DE CARROS          \n");
+								printf("\n=\t-CADASTRO DE CLIENTES-\n\n");
+								printf("\n=NOME: ");
 								fflush(stdin);
 								gets(cadcli[ind1].nome);
-								printf("\nCNH: ");
+								printf("\n=CNH: ");
 								scanf("%i",&cadcli[ind1].numcnh);
 								
 								ind1++;
 								system("cls");
-								printf("\t-CADASTRO DE CLIENTE-\n");
-								printf("\nCADASTRO EFETIVADO COM SUCESSO\n");
-								printf("\nDESEJA CONTINUAR CADASTRANDO?");										
-								printf("\n1 - Continuar");
-								printf("\n0 - Sair\n");
+								printf("==========================================\n");
+								printf("=\tAJR ALUGUEL DE CARROS          \n");
+								printf("=\t-CADASTRO DE CLIENTE-\n");
+								printf("\n=CADASTRO EFETIVADO COM SUCESSO\n");
+								printf("\n==========================================\n");
+								printf("\n=DESEJA CONTINUAR CADASTRANDO?");										
+								printf("\n=\t1 - Continuar");
+								printf("\n=\t0 - Sair\n");
+								printf("=\t--->");
 								scanf("%i",&op3);
 								
 							}while(op3!=0);
@@ -126,8 +166,10 @@ g1senha=123;
 								do{
 									flag1=0;
 									system("cls");
-									printf("-CADASTRO TABELA PRECO-\n\n");
-									printf("\nMARCA: ");
+									printf("==========================================\n");
+									printf("=\tAJR ALUGUEL DE CARROS          \n");
+									printf("=\t-CADASTRO TABELA PRECO-\n\n");
+									printf("\n=MARCA: ");
 									fflush(stdin);
 									gets(pesqmarca);
 									strupr(pesqmarca);
@@ -138,8 +180,13 @@ g1senha=123;
 										}
 									}
 									
-									if (flag1 == 0){										
-										printf("\nMARCA DE VEICULO NAO CADASTRADO, CADASTRAR VEICULO!\n");
+									if (flag1 == 0){
+										system("cls");
+										printf("==========================================\n");
+										printf("=\tAJR ALUGUEL DE CARROS          \n");
+										printf("=\t-CADASTRO TABELA PRECO-\n\n");										
+										printf("\n=  MARCA DE VEICULO NAO CADASTRADO, CADASTRAR VEICULO!\n");
+										printf("\n==============================================\n");
 										system("pause");
 									}
 									else
@@ -155,20 +202,23 @@ g1senha=123;
 										
 										if (flag1 == 0){										
 											strcpy(tabpreco[indextabpreco].marca,pesqmarca); 
-											printf("\nPRECO: ");										
+											printf("\n=PRECO: ");										
 											scanf("%f",&tabpreco[indextabpreco].preco);
 										}
 										else
 										{
-											printf("\nPRECO ATUALIZADO: ");
+											printf("\n=PRECO ATUALIZADO: ");
 											scanf("%f",&tabpreco[indexaux].preco);
 										}
 									}
-									
-									printf("\n\nCONTINUAR CADASTRO? (1)-SIM  (2)-NAO\n");
-									printf("Op: ");
+									system("cls");
+									printf("==========================================\n");
+									printf("=\tAJR ALUGUEL DE CARROS          \n");
+									printf("=\t-CADASTRO TABELA PRECO-\n\n");
+									printf("\n=CONTINUAR CADASTRO? (1)-SIM  (2)-NAO\n");
+									printf("=Op: ");
 									scanf("%i",&op4);
-									
+									printf("\n==============================================\n");
 									indextabpreco ++;
 									
 								}while (op4 != 2);								
@@ -180,8 +230,10 @@ g1senha=123;
 								do{
 									flag1=0;
 									system("cls");
-									printf("-REALIZAR ALUGUEL VEICULO-\n\n");
-									printf("\nINFORME CNH CLIENTE: ");
+									printf("\n==============================================\n");
+									printf("=\tAJR ALUGUEL DE CARROS          \n");
+									printf("=\t-REALIZAR ALUGUEL VEICULO-\n\n");
+									printf("=INFORME CNH CLIENTE: ");
 									scanf("%i",&pesqnumcnh);
 																	
 									for (i=0; i< ind1; i++){
@@ -192,14 +244,18 @@ g1senha=123;
 										}
 									}
 									
-									if (flag1 == 0){										
-										printf("\nCNH NAO CADASTRADA!\n");	
+									if (flag1 == 0){							
+										printf("\n==============================================\n");
+										printf("=\tAJR ALUGUEL DE CARROS          \n");			
+										printf("=\t-REALIZAR ALUGUEL VEICULO-\n");
+										printf("\n=  CNH NAO CADASTRADA!\n");	
+										printf("\n==============================================\n");
 										system("pause");
 									}
 									else
 									{
 										
-										printf("\nINFORME MODELO: ");
+										printf("\n=INFORME MODELO: ");
 										fflush(stdin);
 										gets(pesqmodelo);
 										strupr(pesqmodelo);
@@ -209,18 +265,23 @@ g1senha=123;
 											if (strcmp(pesqmodelo,cadcar[i].modelo) == 0){
 												flag1 = 1;
 												indexauxmodelo = i;
-												printf("\nMARCA: %s",cadcar[i].marca);
+												printf("\n= ---> MARCA: %s",cadcar[i].marca);
 											}
 										}
 										
-										if (flag1 == 0){										
-											printf("\nMODELO DE VEICULO NAO CADASTRADO, CADASTRAR VEICULO!\n");
+										if (flag1 == 0){	
+											system("cls");									
+											printf("\n==============================================\n");
+											printf("=\tAJR ALUGUEL DE CARROS          \n");			
+											printf("=\t-REALIZAR ALUGUEL VEICULO-\n");
+											printf("\n   MODELO DE VEICULO NAO CADASTRADO, CADASTRAR VEICULO!\n");
+											printf("\n==============================================\n");
 											system("pause");
 											
 										}
 										else
 										{
-											printf("\n\nINFORME MARCA: ");
+											printf("\n\n=INFORME MARCA: ");
 											fflush(stdin);
 											gets(pesqmarca);
 											
@@ -231,12 +292,17 @@ g1senha=123;
 												if (strcmp(pesqmarca,cadcar[i].marca) == 0){
 													flag1 = 1;
 													indexauxmarca = i;
-													printf("\nMARCA: %s",cadcar[i].marca);
+													//printf("\nMARCA: %s",cadcar[i].marca);
 												}
 											}
 											
-											if (flag1 == 0){										
-												printf("\nMARCA DE VEICULO NAO CADASTRADO!\n");
+											if (flag1 == 0){		
+												system("cls");				
+												printf("\n==============================================\n");
+												printf("=\tAJR ALUGUEL DE CARROS          \n");			
+												printf("=\t-REALIZAR ALUGUEL VEICULO-\n");				
+												printf("\n=  MARCA DE VEICULO NAO CADASTRADO!\n");
+												printf("\n==============================================\n");
 												system("pause");
 												
 											}
@@ -251,31 +317,41 @@ g1senha=123;
 													}
 												}
 												
-												if (flag1 == 0){										
-													printf("\nTABELA DE PRECO NAO CADASTRADO PARA O VEICULO!\n");	
+												if (flag1 == 0){						
+													system("cls");
+													printf("\n==============================================\n");
+													printf("=\tAJR ALUGUEL DE CARROS          \n");			
+													printf("=\t-REALIZAR ALUGUEL VEICULO-\n");				
+													printf("\n=  TABELA DE PRECO NAO CADASTRADO PARA O VEICULO!\n");	
+													printf("\n==============================================\n");
 													system("pause");
 													
 												}
 												else
 												{
-													if (cadcar[indexauxmarca].quant < 1){														
-														printf("\n\nMARCA DE VEICULO INDISPONIVEL!\n");
+													if (cadcar[indexauxmarca].quant < 1){					
+														system("cls");
+														printf("\n==============================================\n");
+														printf("=\tAJR ALUGUEL DE CARROS          \n");			
+														printf("=\t-REALIZAR ALUGUEL VEICULO-\n");				
+														printf("\n\n=  MARCA DE VEICULO INDISPONIVEL!\n");
+														printf("\n==============================================\n");
 														system("pause");
 													}
 													else
 													{
 													
-														printf("\nVALOR ALUGUEL DO VEICULO: %2.f",tabpreco[indexauxmarcatabpreco].preco);	
-														printf("\nMARCA: %s",tabpreco[indexauxmarcatabpreco].marca);
-														printf("\n\nHORAS ALUGADAS: ");
+														printf("\n=VALOR ALUGUEL DO VEICULO: %2.f",tabpreco[indexauxmarcatabpreco].preco);	
+														printf("\n=MARCA: %s",tabpreco[indexauxmarcatabpreco].marca);
+														printf("\n\n=HORAS ALUGADAS: ");
 														scanf("%i",&horasalugadas);
 														valortotal=horasalugadas*tabpreco[indexauxmarcatabpreco].preco;
-														printf("\n\nVALOR TOTAL: %.2f",valortotal);
-														printf("\nVALOR PAGO: ");
+														printf("\n\n=VALOR TOTAL: %.2f",valortotal);
+														printf("\n=VALOR PAGO: ");
 														scanf("%f",&valorpago);
 														
 														if (valorpago<valortotal){
-															printf("\nVALOR PAGO INFERIOR AO TOTAL!\n");
+															printf("\n=VALOR PAGO INFERIOR AO TOTAL!\n");
 															system("pause");
 														}
 														else
@@ -284,7 +360,8 @@ g1senha=123;
 															
 															valortroco = valorpago-valortotal;
 															
-															printf("\nTROCO: %.2f\n",valortroco);	
+															printf("\n=TROCO: %.2f\n",valortroco);	
+															printf("\n==============================================\n");
 															system("pause");															
 														}
 													}
@@ -293,16 +370,25 @@ g1senha=123;
 											}
 										}
 									}
-								
-									printf("\n\nDESEJA CONTINUAR O ALUGUEL? (1)-SIM (2)-NAO\n");
+									system("cls");
+									printf("\n==============================================\n");
+									printf("=\tAJR ALUGUEL DE CARROS          \n");
+									printf("=\t-REALIZAR ALUGUEL VEICULO-\n");
+									printf("\n\n=  DESEJA CONTINUAR O ALUGUEL? (1)-SIM (2)-NAO\n");
+									printf("\n==============================================\n");
 									scanf("%i",&op4);
 									
 								}while (op4 != 2);
 								break;					
 											
 					
-					default: 	printf("Opcao Invalida!\n\n") ;
-								break;
+					default: 	
+						printf("\n==============================================\n");
+						printf("=\tAJR ALUGUEL DE CARROS          \n");
+						printf("\n\n=     Opcao Invalida!\n\n") ;
+						printf("\n==============================================\n");
+						system("pause");
+						break;
 								
 				}
 				
@@ -311,10 +397,15 @@ g1senha=123;
 		else
 		{
 			system("cls");
-			printf("Deseja sair?\n");
-			printf("0-Sim\n");
-			printf("1-Nao\n");
+			printf("=             AJR ALUGUEL DE CARROS          \n");
+      		printf("=                                            \n");
+			printf("=                Deseja sair?\n");
+			printf("=                   0-Sim\n");
+			printf("=                   1-Nao\n");
+			printf("=              --->");
 			scanf("%i",&op2);
+			printf("=                                            \n");
+			printf("==============================================\n");
 			if (op2==0)
 			{	
 				return 0;
